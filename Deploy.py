@@ -3,12 +3,12 @@ import subprocess
 
 class Application(Frame):
     def say_hi(self):
-      subprocess.call(['./echo'], shell=True)
+      subprocess.call(['sh test.sh'], shell=True)
 
 
     def createWidgets(self):
         self.QUIT = Button(self)
-        self.QUIT["text"] = "QUIT"
+        self.QUIT["text"] = "EXIT"
         self.QUIT["fg"]   = "red"
         self.QUIT["command"] =  self.quit
 
