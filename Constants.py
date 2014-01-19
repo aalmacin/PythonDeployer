@@ -7,5 +7,6 @@ HOME_MESSAGE = 'Babyrobot Deployment Tool'
 NEW_PROJECT_TEXT = 'New Project'
 PROJECT_TXT = 'Project'
 DEPLOY_TXT = 'Deploy'
-
-BLUE = '#0000ff'
+PROJECT_NAME_TXT = 'Project Name'
+PROJECT_IP_TXT = 'Project IP'
+PROJECT_USERNAME_TXT = 'Username'

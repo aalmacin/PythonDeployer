@@ -5,19 +5,21 @@ import Constants
 
 class Application(Frame):
 
-    def show_home(self):
-      self.home.grid()
+    def remove_all(self):
+      self.home.grid_remove()
       self.projects.grid_remove()
       self.deployer.grid_remove()
+
+    def show_home(self):
+      self.remove_all()
+      self.home.grid()
 
     def show_project(self):
-      self.home.grid_remove()
+      self.remove_all()
       self.projects.grid()
-      self.deployer.grid_remove()
 
     def show_deploy(self):
-      self.home.grid_remove()
-      self.projects.grid_remove()
+      self.remove_all()
       self.deployer.grid()
 
     def createWidgets(self):
