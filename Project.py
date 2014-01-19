@@ -6,23 +6,33 @@ import re
 class Project(Frame):
   def _create_config(self):
     project_name = self.new_project_frame.project_name_entry.get()
-    project_ip = self.new_project_frame.project_ip_entry.get()
     project_username = self.new_project_frame.project_username_entry.get()
 
+    qa_ip = self.new_project_frame.project_qa_ip_entry.get()
+
     new_project_path = str.lower(re.sub(r'\W+', '_', project_name))
-    new_project_cmd = 'mkdir projects/' + new_project_path
+    global_path = 'projects/%(path)s' % {"path": new_project_path}
+    new_project_cmd = 'mkdir %(path)s' % {"path": global_path}
     fail = subprocess.call([new_project_cmd], shell=True)
 
     self.new_project_frame.grid_forget()
+
+    file_creation_format = 'ip=%(ip)s\npath=%(path)s'
+    global_file_creation_format = 'username=%(username)s'
+    file_name_format = '%(path)s/%(env)s.conf'
+
     if fail:
       self.error_message = Label(self, text=Constants.PROJECT_EXISTS_MESSAGE)
       self.error_message.grid(row=1, column=0)
-
-      f = open('projects/' + new_project_path + '/staging.conf','w')
-      f.write('ip=' + project_ip + '\nusername=' + project_username + '\npath=/home/' + project_username + '/staging')
-      f.close()
     else:
-      print 'Created'
+      f = open(file_name_format % {"path":global_path, "env": "global"},'w')
+      f.write(global_file_creation_format % {"username": project_username})
+      f.close()
+
+      qa_path = file_name_format % {"path":global_path, "env": "qa"}
+      f = open(qa_path,'w')
+      f.write(file_creation_format % {"ip": qa_ip, "path": qa_path})
+      f.close()
 
 
     project_frame_winfo = self.new_project_frame.winfo_children()
