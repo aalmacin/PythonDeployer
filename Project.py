@@ -12,6 +12,9 @@ class Project(Frame):
     new_project_path = str.lower(re.sub(r'\W+', '_', project_name))
     new_project_cmd = 'mkdir projects/' + new_project_path
     fail = subprocess.call([new_project_cmd], shell=True)
+    f = open('projects/' + new_project_path + '/staging.conf','w')
+    f.write('ip=' + project_ip + '\nusername=' + project_username + '\npath=/home/' + project_username + '/staging')
+    f.close()
 
     self.new_project_frame.grid_forget()
     if fail:
