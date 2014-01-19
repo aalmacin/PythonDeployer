@@ -1,6 +1,9 @@
+# Sizes
 C_PADDING_SIZE = 30
 APP_WIDTH = 300
 APP_HEIGHT = 400
+
+# Texts
 CREATE_TXT = 'Create'
 HOME_TXT = 'Home'
 HOME_MESSAGE = 'Babyrobot Deployment Tool'
@@ -10,3 +13,8 @@ DEPLOY_TXT = 'Deploy'
 PROJECT_NAME_TXT = 'Project Name'
 PROJECT_IP_TXT = 'Project IP'
 PROJECT_USERNAME_TXT = 'Username'
+NEXT_TXT = 'Next'
+PROJECT_EXISTS_MESSAGE = 'Project already exists'
+
+# Colors
+RED = '#FF0000'
