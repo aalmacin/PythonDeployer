@@ -19,6 +19,8 @@ PROJECT_EXISTS_MESSAGE = 'Project already exists'
 ENVIRONMENTS_TXT = 'Environments'
 DEV_TXT = 'dev'
 QA_TXT = 'qa'
+STAGING_TXT = 'staging'
+LIVE_TXT = 'live'
 PATH_TXT = 'Path'
 
 # Colors

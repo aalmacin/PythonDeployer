@@ -8,7 +8,17 @@ class Project(Frame):
     project_name = self.new_project_frame.project_name_entry.get()
     project_username = self.new_project_frame.project_username_entry.get()
 
+    dev_ip = self.new_project_frame.project_dev_ip_entry.get()
+    dev_path = self.new_project_frame.project_dev_path_entry.get()
+
     qa_ip = self.new_project_frame.project_qa_ip_entry.get()
+    qa_path = self.new_project_frame.project_qa_path_entry.get()
+
+    staging_ip = self.new_project_frame.project_staging_ip_entry.get()
+    staging_path = self.new_project_frame.project_staging_path_entry.get()
+
+    live_ip = self.new_project_frame.project_live_ip_entry.get()
+    live_path = self.new_project_frame.project_live_path_entry.get()
 
     new_project_path = str.lower(re.sub(r'\W+', '_', project_name))
     global_path = 'projects/%(path)s' % {"path": new_project_path}
@@ -29,9 +39,24 @@ class Project(Frame):
       f.write(global_file_creation_format % {"username": project_username})
       f.close()
 
-      qa_path = file_name_format % {"path":global_path, "env": "qa"}
-      f = open(qa_path,'w')
+      dev_local_path = file_name_format % {"path":global_path, "env": "dev"}
+      f = open(dev_local_path,'w')
+      f.write(file_creation_format % {"ip": dev_ip, "path": dev_path})
+      f.close()
+
+      qa_local_path = file_name_format % {"path":global_path, "env": "qa"}
+      f = open(qa_local_path,'w')
       f.write(file_creation_format % {"ip": qa_ip, "path": qa_path})
+      f.close()
+
+      staging_local_path = file_name_format % {"path":global_path, "env": "staging"}
+      f = open(staging_local_path,'w')
+      f.write(file_creation_format % {"ip": staging_ip, "path": staging_path})
+      f.close()
+
+      live_local_path = file_name_format % {"path":global_path, "env": "live"}
+      f = open(live_local_path,'w')
+      f.write(file_creation_format % {"ip": live_ip, "path": live_path})
       f.close()
 
 
@@ -89,7 +114,7 @@ class Project(Frame):
     self.new_project_frame.project_dev_path_entry = Entry(self.new_project_frame)
     self.new_project_frame.project_dev_path_entry.grid(row=5, column=1)
 
-    # Project IP
+    # Dev IP
     self.new_project_frame.project_dev_ip_label = Label(self.new_project_frame, text=Constants.PROJECT_IP_TXT)
     self.new_project_frame.project_dev_ip_label.grid(row=6, column=0)
 
@@ -106,12 +131,46 @@ class Project(Frame):
     self.new_project_frame.project_qa_path_entry = Entry(self.new_project_frame)
     self.new_project_frame.project_qa_path_entry.grid(row=8, column=1)
 
-    # Project IP
+    # QA IP
     self.new_project_frame.project_qa_ip_label = Label(self.new_project_frame, text=Constants.PROJECT_IP_TXT)
     self.new_project_frame.project_qa_ip_label.grid(row=9, column=0)
 
     self.new_project_frame.project_qa_ip_entry = Entry(self.new_project_frame)
     self.new_project_frame.project_qa_ip_entry.grid(row=9, column=1)
+
+    # STAGING env
+    self.new_project_frame.staging_label = Label(self.new_project_frame, text=Constants.STAGING_TXT)
+    self.new_project_frame.staging_label.grid(row=10, column=0, columnspan=2)
+
+    self.new_project_frame.project_staging_path_label = Label(self.new_project_frame, text=Constants.PATH_TXT)
+    self.new_project_frame.project_staging_path_label.grid(row=11, column=0)
+
+    self.new_project_frame.project_staging_path_entry = Entry(self.new_project_frame)
+    self.new_project_frame.project_staging_path_entry.grid(row=11, column=1)
+
+    # STAGING IP
+    self.new_project_frame.project_staging_ip_label = Label(self.new_project_frame, text=Constants.PROJECT_IP_TXT)
+    self.new_project_frame.project_staging_ip_label.grid(row=12, column=0)
+
+    self.new_project_frame.project_staging_ip_entry = Entry(self.new_project_frame)
+    self.new_project_frame.project_staging_ip_entry.grid(row=12, column=1)
+
+    # LIVE env
+    self.new_project_frame.live_label = Label(self.new_project_frame, text=Constants.LIVE_TXT)
+    self.new_project_frame.live_label.grid(row=13, column=0, columnspan=2)
+
+    self.new_project_frame.project_live_path_label = Label(self.new_project_frame, text=Constants.PATH_TXT)
+    self.new_project_frame.project_live_path_label.grid(row=14, column=0)
+
+    self.new_project_frame.project_live_path_entry = Entry(self.new_project_frame)
+    self.new_project_frame.project_live_path_entry.grid(row=14, column=1)
+
+    # LIVE IP
+    self.new_project_frame.project_live_ip_label = Label(self.new_project_frame, text=Constants.PROJECT_IP_TXT)
+    self.new_project_frame.project_live_ip_label.grid(row=15, column=0)
+
+    self.new_project_frame.project_live_ip_entry = Entry(self.new_project_frame)
+    self.new_project_frame.project_live_ip_entry.grid(row=15, column=1)
 
     # Create button
     self.new_project_frame.create_button = Button(self.new_project_frame, text=Constants.SAVE_TXT, command=self._create_config)
