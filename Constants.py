@@ -20,7 +20,9 @@ ENVIRONMENTS_TXT = 'Environments'
 DEV_TXT = 'dev'
 QA_TXT = 'qa'
 STAGING_TXT = 'staging'
+STAGING_2_TXT = 'staging 2'
 LIVE_TXT = 'live'
+LIVE_2_TXT = 'live 2'
 PATH_TXT = 'Path'
 
 # Colors
